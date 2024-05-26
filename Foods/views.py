@@ -6,7 +6,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 
-from .models import Junks,Foods,Restaurant,Order
+from .models import Foods,Restaurant,Order
 from .serializers import FoodsSerializer,RestaurantSerializer,OrderSerializer
 # Create your views here.
 
