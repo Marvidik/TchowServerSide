@@ -8,6 +8,8 @@ from rest_framework.response import Response
 
 from Drivers.models import Drivers,DriversOrder
 from Drivers.serializers import DriversSerializer,DriversOrderSerializer
+from Foods.models import Order
+from Foods.serializers import OrderSerializer
 # Create your views here.
 
 
@@ -25,6 +27,14 @@ def sent_orders(request):
     data=DriversOrder.objects.get()
 
     serializer=DriversOrderSerializer(instance=data,many=True)
+
+    return Response({'orders': serializer.data}, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def user_orders(request):
+    data=Order.objects.get()
+
+    serializer=OrderSerializer(instance=data,many=True)
 
     return Response({'orders': serializer.data}, status=status.HTTP_200_OK)
 
