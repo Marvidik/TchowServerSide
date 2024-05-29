@@ -14,5 +14,14 @@ class Drivers(models.Model):
     phone=models.IntegerField()
     location=models.CharField(max_length=100)
     balance=models.IntegerField()
-    availability=models.CharField(max_length=100, choices=choices  )
+    availability=models.CharField(max_length=100, choices=choices)
+
+
+class DriversOrder(models.Model):
+    driver=models.ForeignKey(Drivers, on_delete=models.CASCADE)
+    userlocation=models.CharField(max_length=200)
+    usersid=models.CharField(max_length=100)
+    orderID=models.CharField(max_length=100)
+    status=models.CharField(max_length=100)
+    orderLocation=models.CharField(max_length=200)
     

@@ -1,0 +1,40 @@
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
+from rest_framework import status
+from rest_framework.authtoken.models import Token
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+
+from Drivers.models import Drivers,DriversOrder
+from Drivers.serializers import DriversSerializer,DriversOrderSerializer
+# Create your views here.
+
+
+@api_view(['GET'])
+def company_drivers(request):
+    data=Drivers.objects.get()
+
+    serializer=DriversSerializer(instance=data,many=True)
+
+    return Response({'driver': serializer.data}, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def sent_orders(request,id):
+    data=DriversOrder.objects.filter(driver=id)
+
+    serializer=DriversOrderSerializer(instance=data,many=True)
+
+    return Response({'orders': serializer.data}, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+def add_to_drivers_order(request):
+    serializer= DriversOrderSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+        return Response({'Orders':" Drivers Orders Successfuly Added"}, status=status.HTTP_200_OK)
+    else:
+        return Response({'Order':"error"}, status=status.HTTP_400_BAD_REQUEST)

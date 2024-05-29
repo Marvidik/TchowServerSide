@@ -11,7 +11,8 @@ class Restaurant(models.Model):
     location=models.CharField(max_length=100,default=None)
     opening_hour=models.TimeField()
     closing_hour=models.TimeField()
-
+    phone=models.IntegerField(null=True)
+    
 
     def __str__(self):
 
@@ -40,6 +41,7 @@ class Order(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     real_food = models.ForeignKey(Foods, on_delete=models.CASCADE, null=True, blank=True)
     delivered = models.BooleanField(default=False, null=True)
-
+    orderID=models.CharField(max_length=100,null=True) 
+    userlocation=models.CharField(max_length=200,null=True)
     def __str__(self):
         return self.user.username
