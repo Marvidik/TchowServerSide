@@ -23,4 +23,5 @@ urlpatterns = [
     path('user/', include('authentication.urls')),
     path('tchow/', include('Foods.urls')),
     path('restaurants/', include('Restaurants.urls')),
+    path('drivers/', include('Drivers.urls')),
 ]

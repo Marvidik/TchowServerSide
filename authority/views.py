@@ -21,8 +21,8 @@ def company_drivers(request):
 
 
 @api_view(['GET'])
-def sent_orders(request,id):
-    data=DriversOrder.objects.filter(driver=id)
+def sent_orders(request):
+    data=DriversOrder.objects.get()
 
     serializer=DriversOrderSerializer(instance=data,many=True)
 

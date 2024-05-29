@@ -12,7 +12,7 @@ from .serializers import DriversSerializer,DriversOrderSerializer
 
 
 @api_view(['GET'])
-def driver(request):
+def driver(request,id):
     data=Drivers.objects.filter(user=id)
 
     serializer=DriversSerializer(instance=data,many=True)
