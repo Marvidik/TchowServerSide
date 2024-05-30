@@ -15,16 +15,16 @@ from Foods.serializers import OrderSerializer
 
 @api_view(['GET'])
 def company_drivers(request):
-    data=Drivers.objects.get()
+    data=Drivers.objects.all()
 
     serializer=DriversSerializer(instance=data,many=True)
 
-    return Response({'driver': serializer.data}, status=status.HTTP_200_OK)
+    return Response({'drivers': serializer.data}, status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
 def sent_orders(request):
-    data=DriversOrder.objects.get()
+    data=DriversOrder.objects.all()
 
     serializer=DriversOrderSerializer(instance=data,many=True)
 
@@ -32,7 +32,7 @@ def sent_orders(request):
 
 @api_view(['GET'])
 def user_orders(request):
-    data=Order.objects.get()
+    data=Order.objects.all()
 
     serializer=OrderSerializer(instance=data,many=True)
 
@@ -47,4 +47,4 @@ def add_to_drivers_order(request):
         serializer.save()
         return Response({'Orders':" Drivers Orders Successfuly Added"}, status=status.HTTP_200_OK)
     else:
-        return Response({'Order':"error"}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'Order':serializer.errors}, status=status.HTTP_400_BAD_REQUEST)

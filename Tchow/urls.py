@@ -24,4 +24,5 @@ urlpatterns = [
     path('tchow/', include('Foods.urls')),
     path('restaurants/', include('Restaurants.urls')),
     path('drivers/', include('Drivers.urls')),
+    path('staff/', include('authority.urls')),
 ]
